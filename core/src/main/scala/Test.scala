@@ -1,4 +1,6 @@
-@hello
+@slimCase
+case class Casey() extends Immutable
+
 object Test extends App {
-  println(this.hello)
+  def foo(t: Casey): Product = t
 }
