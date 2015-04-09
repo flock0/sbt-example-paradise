@@ -31,6 +31,7 @@ object MyBuild extends Build {
     file("macros"),
     settings = buildSettings ++ Seq(
       libraryDependencies <+= (scalaVersion)("org.scala-lang" % "scala-reflect" % _),
+      libraryDependencies+= "lego-core" % "lego-core_2.11" % "0.1-SNAPSHOT",
       libraryDependencies ++= (
         if (scalaVersion.value.startsWith("2.10")) List("org.scalamacros" %% "quasiquotes" % paradiseVersion)
         else Nil
