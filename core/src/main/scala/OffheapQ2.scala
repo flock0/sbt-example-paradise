@@ -42,7 +42,7 @@ object OffheapQ2 extends LegoRunner {
     })
     {
       val x9 = x3.next_int()
-      val x11 = new scala.Array[Byte](56)
+      val x11 = Array.uninit[Byte](56)
       val x12 = x3.next(x11)
       val x15 = { x13: Byte => {
           val x14 = x13.!=(0)
@@ -51,7 +51,7 @@ object OffheapQ2 extends LegoRunner {
       }
       val x16 = x11.filter(x15)
       val x17 = new OffheapOptimalString(x16)
-      val x19 = new scala.Array[Byte](26)
+      val x19 = Array.uninit[Byte](26)
       val x20 = x3.next(x19)
       val x23 = { x21: Byte => {
           val x22 = x21.!=(0)
@@ -60,7 +60,7 @@ object OffheapQ2 extends LegoRunner {
       }
       val x24 = x19.filter(x23)
       val x25 = new OffheapOptimalString(x24)
-      val x27 = new scala.Array[Byte](11)
+      val x27 = Array.uninit[Byte](11)
       val x28 = x3.next(x27)
       val x31 = { x29: Byte => {
           val x30 = x29.!=(0)
@@ -69,7 +69,7 @@ object OffheapQ2 extends LegoRunner {
       }
       val x32 = x27.filter(x31)
       val x33 = new OffheapOptimalString(x32)
-      val x34 = new scala.Array[Byte](26)
+      val x34 = Array.uninit[Byte](26)
       val x35 = x3.next(x34)
       val x38 = { x36: Byte => {
           val x37 = x36.!=(0)
@@ -79,7 +79,7 @@ object OffheapQ2 extends LegoRunner {
       val x39 = x34.filter(x38)
       val x40 = new OffheapOptimalString(x39)
       val x41 = x3.next_int()
-      val x42 = new scala.Array[Byte](11)
+      val x42 = Array.uninit[Byte](11)
       val x43 = x3.next(x42)
       val x46 = { x44: Byte => {
           val x45 = x44.!=(0)
@@ -89,7 +89,7 @@ object OffheapQ2 extends LegoRunner {
       val x47 = x42.filter(x46)
       val x48 = new OffheapOptimalString(x47)
       val x49 = x3.next_double()
-      val x51 = new scala.Array[Byte](24)
+      val x51 = Array.uninit[Byte](24)
       val x52 = x3.next(x51)
       val x55 = { x53: Byte => {
           val x54 = x53.!=(0)
@@ -124,7 +124,7 @@ object OffheapQ2 extends LegoRunner {
       val x74 = x67.next_int()
       val x75 = x67.next_int()
       val x76 = x67.next_double()
-      val x78 = new scala.Array[Byte](200)
+      val x78 = Array.uninit[Byte](200)
       val x79 = x67.next(x78)
       val x82 = { x80: Byte => {
           val x81 = x80.!=(0)
@@ -156,7 +156,7 @@ object OffheapQ2 extends LegoRunner {
     })
     {
       val x100 = x94.next_int()
-      val x102 = new scala.Array[Byte](26)
+      val x102 = Array.uninit[Byte](26)
       val x103 = x94.next(x102)
       val x106 = { x104: Byte => {
           val x105 = x104.!=(0)
@@ -166,7 +166,7 @@ object OffheapQ2 extends LegoRunner {
       val x107 = x102.filter(x106)
       val x108 = new OffheapOptimalString(x107)
       val x109 = x94.next_int()
-      val x111 = new scala.Array[Byte](153)
+      val x111 = Array.uninit[Byte](153)
       val x112 = x94.next(x111)
       val x115 = { x113: Byte => {
           val x114 = x113.!=(0)
@@ -198,7 +198,7 @@ object OffheapQ2 extends LegoRunner {
     })
     {
       val x133 = x127.next_int()
-      val x135 = new scala.Array[Byte](26)
+      val x135 = Array.uninit[Byte](26)
       val x136 = x127.next(x135)
       val x139 = { x137: Byte => {
           val x138 = x137.!=(0)
@@ -207,7 +207,7 @@ object OffheapQ2 extends LegoRunner {
       }
       val x140 = x135.filter(x139)
       val x141 = new OffheapOptimalString(x140)
-      val x143 = new scala.Array[Byte](153)
+      val x143 = Array.uninit[Byte](153)
       val x144 = x127.next(x143)
       val x147 = { x145: Byte => {
           val x146 = x145.!=(0)
@@ -239,7 +239,7 @@ object OffheapQ2 extends LegoRunner {
     })
     {
       val x165 = x159.next_int()
-      val x167 = new scala.Array[Byte](26)
+      val x167 = Array.uninit[Byte](26)
       val x168 = x159.next(x167)
       val x171 = { x169: Byte => {
           val x170 = x169.!=(0)
@@ -248,7 +248,7 @@ object OffheapQ2 extends LegoRunner {
       }
       val x172 = x167.filter(x171)
       val x173 = new OffheapOptimalString(x172)
-      val x175 = new scala.Array[Byte](41)
+      val x175 = Array.uninit[Byte](41)
       val x176 = x159.next(x175)
       val x179 = { x177: Byte => {
           val x178 = x177.!=(0)
@@ -258,7 +258,7 @@ object OffheapQ2 extends LegoRunner {
       val x180 = x175.filter(x179)
       val x181 = new OffheapOptimalString(x180)
       val x182 = x159.next_int()
-      val x184 = new scala.Array[Byte](16)
+      val x184 = Array.uninit[Byte](16)
       val x185 = x159.next(x184)
       val x188 = { x186: Byte => {
           val x187 = x186.!=(0)
@@ -268,7 +268,7 @@ object OffheapQ2 extends LegoRunner {
       val x189 = x184.filter(x188)
       val x190 = new OffheapOptimalString(x189)
       val x191 = x159.next_double()
-      val x193 = new scala.Array[Byte](102)
+      val x193 = Array.uninit[Byte](102)
       val x194 = x159.next(x193)
       val x197 = { x195: Byte => {
           val x196 = x195.!=(0)

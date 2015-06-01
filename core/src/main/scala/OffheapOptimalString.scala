@@ -9,7 +9,7 @@ import offheap._
 @noImplementation
 @needs[(Tuple2[_, _], scala.Array[_])]
 @data
-class OffheapOptimalString(@embed val data: scala.Array[Byte]) {
+class OffheapOptimalString(val data: Array[Byte]) {
   override def hashCode(): Int = data.foldLeft(0)((sum, e) => sum + e)
   override def equals(o: Any): Boolean = {
     val arr2 = o.asInstanceOf[OffheapOptimalString]
