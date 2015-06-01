@@ -36,10 +36,14 @@ object MyBuild extends Build {
       libraryDependencies += "root" % "root_2.11" % "0.1-SNAPSHOT",
       libraryDependencies += "core" % "core_2.11" % "0.1-SNAPSHOT",
       libraryDependencies += "macros" % "macros_2.11" % "0.1-SNAPSHOT",
+      libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6",
       libraryDependencies ++= (
         if (scalaVersion.value.startsWith("2.10")) List("org.scalamacros" %% "quasiquotes" % paradiseVersion)
         else Nil
-      )
+      ),
+      testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
+      parallelExecution in Test := false,
+      logBuffered := false
     )
   )
 
