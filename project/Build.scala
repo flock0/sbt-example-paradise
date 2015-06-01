@@ -40,16 +40,17 @@ object MyBuild extends Build {
       libraryDependencies ++= (
         if (scalaVersion.value.startsWith("2.10")) List("org.scalamacros" %% "quasiquotes" % paradiseVersion)
         else Nil
-      ),
-      testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
-      parallelExecution in Test := false,
-      logBuffered := false
+      )
     )
   )
 
   lazy val core: Project = Project(
     "core",
     file("core"),
-    settings = buildSettings
+    settings = buildSettings ++ Seq(
+      testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
+      parallelExecution in Test := false,
+      logBuffered := false
+    )
   ) dependsOn(macros)
 }
