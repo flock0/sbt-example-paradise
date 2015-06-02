@@ -12,12 +12,12 @@ import queryengine.GenericEngine
 import sc.pardis.shallow.scalalib.collection.Cont
 import offheap._
 
-@data class REGIONRecord(val R_REGIONKEY: Int, @embed val R_NAME: OffheapOptimalString)
+@data class REGIONRecord(val R_REGIONKEY: Int, @embed val R_NAME: TupleString)
 case class WindowRecord_Int_DynamicCompositeRecord_REGIONRecord_DynamicCompositeRecord_PARTRecord_DynamicCompositeRecord_NATIONRecord_DynamicCompositeRecord_SUPPLIERRecord_PARTSUPPRecord(val wnd: REGIONRecord_PARTRecord_NATIONRecord_SUPPLIERRecord_PARTSUPPRecord)
-@data class NATIONRecord(val N_NATIONKEY: Int, @embed val N_NAME: OffheapOptimalString, val N_REGIONKEY: Int)
-case class REGIONRecord_PARTRecord_NATIONRecord_SUPPLIERRecord_PARTSUPPRecord(val R_REGIONKEY: Int, val R_NAME: OffheapOptimalString, val P_PARTKEY: Int, val P_MFGR: OffheapOptimalString, val P_TYPE: OffheapOptimalString, val P_SIZE: Int, val N_NATIONKEY: Int, val N_NAME: OffheapOptimalString, val N_REGIONKEY: Int, val S_SUPPKEY: Int, val S_NAME: OffheapOptimalString, val S_ADDRESS: OffheapOptimalString, val S_NATIONKEY: Int, val S_PHONE: OffheapOptimalString, val S_ACCTBAL: Double, val S_COMMENT: OffheapOptimalString, val PS_PARTKEY: Int, val PS_SUPPKEY: Int, val PS_SUPPLYCOST: Double)
-@data class PARTRecord(val P_PARTKEY: Int, @embed val P_MFGR: OffheapOptimalString, @embed val P_TYPE: OffheapOptimalString, val P_SIZE: Int)
-@data class SUPPLIERRecord(val S_SUPPKEY: Int, @embed val S_NAME: OffheapOptimalString, @embed val S_ADDRESS: OffheapOptimalString, val S_NATIONKEY: Int, @embed val S_PHONE: OffheapOptimalString, val S_ACCTBAL: Double, @embed val S_COMMENT: OffheapOptimalString)
+@data class NATIONRecord(val N_NATIONKEY: Int, @embed val N_NAME: TupleString, val N_REGIONKEY: Int)
+case class REGIONRecord_PARTRecord_NATIONRecord_SUPPLIERRecord_PARTSUPPRecord(val R_REGIONKEY: Int, val R_NAME: TupleString, val P_PARTKEY: Int, val P_MFGR: TupleString, val P_TYPE: TupleString, val P_SIZE: Int, val N_NATIONKEY: Int, val N_NAME: TupleString, val N_REGIONKEY: Int, val S_SUPPKEY: Int, val S_NAME: TupleString, val S_ADDRESS: TupleString, val S_NATIONKEY: Int, val S_PHONE: TupleString, val S_ACCTBAL: Double, val S_COMMENT: TupleString, val PS_PARTKEY: Int, val PS_SUPPKEY: Int, val PS_SUPPLYCOST: Double)
+@data class PARTRecord(val P_PARTKEY: Int, @embed val P_MFGR: TupleString, @embed val P_TYPE: TupleString, val P_SIZE: Int)
+@data class SUPPLIERRecord(val S_SUPPKEY: Int, @embed val S_NAME: TupleString, @embed val S_ADDRESS: TupleString, val S_NATIONKEY: Int, @embed val S_PHONE: TupleString, val S_ACCTBAL: Double, @embed val S_COMMENT: TupleString)
 @data class PARTSUPPRecord(val PS_PARTKEY: Int, val PS_SUPPKEY: Int, val PS_SUPPLYCOST: Double)
 object OffheapQ2 extends LegoRunner {
   def executeQuery(query: String, sf: Double, schema: ch.epfl.data.dblab.legobase.schema.Schema): Unit = main()
@@ -50,7 +50,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x16 = x11.filter(x15)
-      val x17 = new OffheapOptimalString(x16)
+      val x17 = TupleString(x16)
       val x19 = new scala.Array[Byte](26)
       val x20 = x3.next(x19)
       val x23 = { x21: Byte => {
@@ -59,7 +59,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x24 = x19.filter(x23)
-      val x25 = new OffheapOptimalString(x24)
+      val x25 = TupleString(x24)
       val x27 = new scala.Array[Byte](11)
       val x28 = x3.next(x27)
       val x31 = { x29: Byte => {
@@ -68,7 +68,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x32 = x27.filter(x31)
-      val x33 = new OffheapOptimalString(x32)
+      val x33 = TupleString(x32)
       val x34 = new scala.Array[Byte](26)
       val x35 = x3.next(x34)
       val x38 = { x36: Byte => {
@@ -77,7 +77,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x39 = x34.filter(x38)
-      val x40 = new OffheapOptimalString(x39)
+      val x40 = TupleString(x39)
       val x41 = x3.next_int()
       val x42 = new scala.Array[Byte](11)
       val x43 = x3.next(x42)
@@ -87,7 +87,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x47 = x42.filter(x46)
-      val x48 = new OffheapOptimalString(x47)
+      val x48 = TupleString(x47)
       val x49 = x3.next_double()
       val x51 = new scala.Array[Byte](24)
       val x52 = x3.next(x51)
@@ -97,7 +97,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x56 = x51.filter(x55)
-      val x57 = new OffheapOptimalString(x56)
+      val x57 = TupleString(x56)
       val x58 = PARTRecord(x9, x25, x40, x41)
       val x59 = x4
       val x60 = x2.update(x59, x58)
@@ -132,7 +132,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x83 = x78.filter(x82)
-      val x84 = new OffheapOptimalString(x83)
+      val x84 = TupleString(x83)
       val x85 = PARTSUPPRecord(x73, x74, x76)
       val x86 = x68
       val x87 = x66.update(x86, x85)
@@ -164,7 +164,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x107 = x102.filter(x106)
-      val x108 = new OffheapOptimalString(x107)
+      val x108 = TupleString(x107)
       val x109 = x94.next_int()
       val x111 = new scala.Array[Byte](153)
       val x112 = x94.next(x111)
@@ -174,7 +174,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x116 = x111.filter(x115)
-      val x117 = new OffheapOptimalString(x116)
+      val x117 = TupleString(x116)
       val x118 = NATIONRecord(x100, x108, x109)
       val x119 = x95
       val x120 = x93.update(x119, x118)
@@ -206,7 +206,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x140 = x135.filter(x139)
-      val x141 = new OffheapOptimalString(x140)
+      val x141 = TupleString(x140)
       val x143 = new scala.Array[Byte](153)
       val x144 = x127.next(x143)
       val x147 = { x145: Byte => {
@@ -215,7 +215,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x148 = x143.filter(x147)
-      val x149 = new OffheapOptimalString(x148)
+      val x149 = TupleString(x148)
       val x150 = REGIONRecord(x133, x141)
       val x151 = x128
       val x152 = x126.update(x151, x150)
@@ -247,7 +247,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x172 = x167.filter(x171)
-      val x173 = new OffheapOptimalString(x172)
+      val x173 = TupleString(x172)
       val x175 = new scala.Array[Byte](41)
       val x176 = x159.next(x175)
       val x179 = { x177: Byte => {
@@ -256,7 +256,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x180 = x175.filter(x179)
-      val x181 = new OffheapOptimalString(x180)
+      val x181 = TupleString(x180)
       val x182 = x159.next_int()
       val x184 = new scala.Array[Byte](16)
       val x185 = x159.next(x184)
@@ -266,7 +266,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x189 = x184.filter(x188)
-      val x190 = new OffheapOptimalString(x189)
+      val x190 = TupleString(x189)
       val x191 = x159.next_double()
       val x193 = new scala.Array[Byte](102)
       val x194 = x159.next(x193)
@@ -276,7 +276,7 @@ object OffheapQ2 extends LegoRunner {
         }
       }
       val x198 = x193.filter(x197)
-      val x199 = new OffheapOptimalString(x198)
+      val x199 = TupleString(x198)
       val x200 = SUPPLIERRecord(x165, x173, x181, x182, x190, x191, x199)
       val x201 = x160
       val x202 = x158.update(x201, x200)
