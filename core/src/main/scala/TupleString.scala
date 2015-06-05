@@ -72,35 +72,112 @@ object String21 {
   def default(implicit alloc: Allocator) = apply("".getBytes, 0, 0)
 }
 
-@data class TupleString(@embed val __1: String21, @embed val __2: String21, @embed val __3: String21, val length: Int) {
-    def ===(o: TupleString): Boolean = compare(o) == 0
-    def =!=(o: TupleString): Boolean = compare(o) != 0
-    def compare(o: TupleString): Int =
-        if (length == o.length)
-            __1.compare(o.__1) + __2.compare(o.__2) + __3.compare(o.__3)
-        else
-            1
+@data class TupleString(
+  @embed val __1: String21, 
+  @embed val __2: String21, 
+  @embed val __3: String21, 
+  @embed val __4: String21, 
+  @embed val __5: String21, 
+  @embed val __6: String21, 
+  @embed val __7: String21, 
+  @embed val __8: String21, 
+  @embed val __9: String21, 
+  @embed val __10: String21, 
+  val length: Int) {
+
+  def endsWith(o: TupleString): Boolean = ??? //data.endsWith(o.data)
+  def endsWith(o: OptimalString): Boolean = ??? //data.endsWith(o.data)
+  def diff(o: OffheapOptimalString): Int = ???
+  def ===(o: TupleString): Boolean = compare(o) == 0
+  def =!=(o: TupleString): Boolean = compare(o) != 0
+  def compare(o: TupleString): Int =
+      if (length == o.length)
+          __1.compare(o.__1) + __2.compare(o.__2) + __3.compare(o.__3) + 
+          __4.compare(o.__4) + __5.compare(o.__5) + __6.compare(o.__6) + 
+          __7.compare(o.__7) + __8.compare(o.__8) + __9.compare(o.__9) + 
+          __10.compare(o.__10)
+      else
+          1
+  def string: String = ???
+  override def toString = string
 }
 object TupleString {
   def apply(data: scala.Array[Byte])(implicit alloc: Allocator): TupleString = {
     var remaining = data.length
-    val __1 =   if(remaining > 21)
-                    String21(data, 0, 21)
-                else
-                    String21(data, 0, remaining.toByte)
+    val __1 = if(remaining > 21)
+                String21(data, 0 * 21, 21)
+              else {
+                String21(data, 0 * 21, remaining.toByte)
+                remaining = 0
+              }
     remaining -= 21
-    val __2 =   if(remaining > 21)
-                    String21(data, 21, 21)
-                else
-                              String21(data, 21, remaining.toByte)
+    val __2 = if(remaining > 21)
+                String21(data, 1 * 21, 21)
+              else {
+                String21(data, 1 * 21, remaining.toByte)
+                remaining = 0
+              }
     remaining -= 21
-    val __3 =   if(remaining > 21) // Strings bigger than 21 * 3 characters are truncated
-                    String21(data, 42, 21)
-                else
-                    String21(data, 42, remaining.toByte)
-    TupleString(__1, __2, __3, __1.length + __2.length + __3.length)
-
-
+    val __3 = if(remaining > 21)
+                String21(data, 2 * 21, 21)
+              else {
+                String21(data, 2 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __4 = if(remaining > 21)
+                String21(data, 3 * 21, 21)
+              else {
+                String21(data, 3 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __5 = if(remaining > 21)
+                String21(data, 4 * 21, 21)
+              else {
+                String21(data, 4 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __6 = if(remaining > 21)
+                String21(data, 5 * 21, 21)
+              else {
+                String21(data, 5 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __7 = if(remaining > 21)
+                String21(data, 6 * 21, 21)
+              else {
+                String21(data, 6 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __8 = if(remaining > 21)
+                String21(data, 7 * 21, 21)
+              else {
+                String21(data, 7 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __9 = if(remaining > 21)
+                String21(data, 8 * 21, 21)
+              else {
+                String21(data, 8 * 21, remaining.toByte)
+                remaining = 0
+              }
+    remaining -= 21
+    val __10 = if(remaining > 21)
+                String21(data, 9 * 21, 21)
+              else {
+                String21(data, 9 * 21, remaining.toByte)
+                remaining = 0
+              }
+    TupleString(__1, __2, __3, __4, __5, __6, __7, __8, __9, __10, 
+      __1.length + __2.length + __3.length + 
+      __4.length + __5.length + __6.length + 
+      __7.length + __8.length + __9.length + 
+      __10.length)
   }
   def default(implicit alloc: Allocator) = apply("".getBytes)
 }
