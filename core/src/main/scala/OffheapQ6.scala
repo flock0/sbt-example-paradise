@@ -22,7 +22,7 @@ object OffheapQ6 extends LegoRunner {
   }
   def main() = 
   {
-    implicit val alloc = Allocator()
+    implicit val alloc = malloc
     val x1 = Loader.fileLineCount("/home/florian/Documents/tpch_testdata/sf0.1/lineitem.tbl")
     val x2 = Array.uninit[LINEITEMRecordQ6](x1)
     val x3 = new K2DBScanner("/home/florian/Documents/tpch_testdata/sf0.1/lineitem.tbl")
