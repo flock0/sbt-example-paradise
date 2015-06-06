@@ -26,35 +26,72 @@ import offheap._
       val __19: Byte,
       val __20: Byte,
       val __21: Byte,
-      val length: Byte) {
+      val length: Byte) extends Iterable[Byte] {
+
+        override def iterator = new Iterator[Byte] {
+          var currentElement = 1
+          def hasNext = currentElement <= length
+          def next = {
+            currentElement += 1
+            apply(currentElement - 1)
+          }
+        }
+
         def ===(o: String21): Boolean = compare(o) == 0
         def =!=(o: String21): Boolean = compare(o) != 0
         def compare(o: String21): Int =
-            if (length == o.length &&
-                __1 == o.__1 &&
-                __2 == o.__2 &&
-                __3 == o.__3 &&
-                __4 == o.__4 &&
-                __5 == o.__5 &&
-                __6 == o.__6 &&
-                __7 == o.__7 &&
-                __8 == o.__8 &&
-                __9 == o.__9 &&
-                __10 == o.__10 &&
-                __11 == o.__11 &&
-                __12 == o.__12 &&
-                __13 == o.__13 &&
-                __14 == o.__14 &&
-                __15 == o.__15 &&
-                __16 == o.__16 &&
-                __17 == o.__17 &&
-                __18 == o.__18 &&
-                __19 == o.__19 &&
-                __20 == o.__20 &&
-                __21 == o.__21)
-                0
-            else
-                1
+        	if (length == 0 && o.length == 0)
+            0
+          else if (length == o.length &&
+              __1 == o.__1 &&
+              __2 == o.__2 &&
+              __3 == o.__3 &&
+              __4 == o.__4 &&
+              __5 == o.__5 &&
+              __6 == o.__6 &&
+              __7 == o.__7 &&
+              __8 == o.__8 &&
+              __9 == o.__9 &&
+              __10 == o.__10 &&
+              __11 == o.__11 &&
+              __12 == o.__12 &&
+              __13 == o.__13 &&
+              __14 == o.__14 &&
+              __15 == o.__15 &&
+              __16 == o.__16 &&
+              __17 == o.__17 &&
+              __18 == o.__18 &&
+              __19 == o.__19 &&
+              __20 == o.__20 &&
+              __21 == o.__21)
+              0
+          else
+              1
+
+      def apply(i: Int): Byte = i match {
+        case 1 => __1
+        case 2 => __2
+        case 3 => __3
+        case 4 => __4
+        case 5 => __5
+        case 6 => __6
+        case 7 => __7
+        case 8 => __8
+        case 9 => __9
+        case 10 => __10
+        case 11 => __11
+        case 12 => __12
+        case 13 => __13
+        case 14 => __14
+        case 15 => __15
+        case 16 => __16
+        case 17 => __17
+        case 18 => __18
+        case 19 => __19
+        case 20 => __20
+        case 21 => __21
+        case _ => throw new NoSuchElementException(s"no element with index $i")
+      }
 }
 
 object String21 {
@@ -83,22 +120,51 @@ object String21 {
   @embed val __8: String21, 
   @embed val __9: String21, 
   @embed val __10: String21, 
-  val length: Int) {
+  val length: Int) extends Iterable[Byte] {
 
-  def endsWith(o: TupleString): Boolean = ??? //data.endsWith(o.data)
-  def endsWith(o: OptimalString): Boolean = ??? //data.endsWith(o.data)
-  def diff(o: OffheapOptimalString): Int = ???
-  def ===(o: TupleString): Boolean = compare(o) == 0
-  def =!=(o: TupleString): Boolean = compare(o) != 0
-  def compare(o: TupleString): Int =
-      if (length == o.length)
-          __1.compare(o.__1) + __2.compare(o.__2) + __3.compare(o.__3) + 
-          __4.compare(o.__4) + __5.compare(o.__5) + __6.compare(o.__6) + 
-          __7.compare(o.__7) + __8.compare(o.__8) + __9.compare(o.__9) + 
-          __10.compare(o.__10)
+  override def iterator = __1.iterator ++ __2.iterator ++ __3.iterator ++ 
+                 __4.iterator ++ __5.iterator ++ __6.iterator ++ 
+                 __7.iterator ++ __8.iterator ++ __9.iterator ++ 
+                 __10.iterator
+
+  def endsWith(that: TupleString): Boolean = {
+    val i = this.iterator.drop(length - that.length)
+    val j = that.iterator
+    while (i.hasNext && j.hasNext)
+      if (i.next != j.next)
+        return false
+
+    !j.hasNext
+  }
+
+  def endsWith(that: OptimalString): Boolean = {
+    val i = this.iterator.drop(length - that.length)
+    val j = that.data.iterator
+    while (i.hasNext && j.hasNext)
+      if (i.next != j.next)
+        return false
+
+    !j.hasNext
+  }
+
+  def diff(that: TupleString): Int = (this.iterator zip that.iterator).foldLeft(0)((res, e) => { if (res == 0) e._1 - e._2 else res })
+  def ===(that: TupleString): Boolean = compare(that) == 0
+  def =!=(that: TupleString): Boolean = compare(that) != 0
+  def compare(that: TupleString): Int =
+      if (length == that.length)
+          __1.compare(that.__1) + __2.compare(that.__2) + __3.compare(that.__3) + 
+          __4.compare(that.__4) + __5.compare(that.__5) + __6.compare(that.__6) + 
+          __7.compare(that.__7) + __8.compare(that.__8) + __9.compare(that.__9) + 
+          __10.compare(that.__10)
       else
           1
-  def string: String = ???
+
+  def string: String = {
+    val sb = StringBuilder()
+    iterator.foreach(b => sb.append(b))
+    sb.toString
+  }
+
   override def toString = string
 }
 object TupleString {
