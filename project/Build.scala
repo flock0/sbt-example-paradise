@@ -37,6 +37,7 @@ object MyBuild extends Build {
       libraryDependencies += "core" % "core_2.11" % "0.1-SNAPSHOT",
       libraryDependencies += "macros" % "macros_2.11" % "0.1-SNAPSHOT",
       libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6",
+      libraryDependencies += "org.scalatest" % "scalatest_2.11" % "latest.integration",
       libraryDependencies ++= (
         if (scalaVersion.value.startsWith("2.10")) List("org.scalamacros" %% "quasiquotes" % paradiseVersion)
         else Nil
